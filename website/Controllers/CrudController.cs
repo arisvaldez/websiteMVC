@@ -17,7 +17,7 @@ namespace website.Controllers
                 new Libro()
                 {
                     Id = 1,
-                    Titulo = "La Gran Controversia",
+                    Titulo = "La Gran Controversias",
                     FechaPublicacion = "1880"
                 },
 

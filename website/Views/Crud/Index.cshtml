@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index Crud</h2>
+
+<ul>
+    @foreach (var item in ViewBag.Datos)
+    {
+        <li><a href="/Crud/Details/@item.Id">@item.Titulo</a></li>
+        <li>@Html.ActionLink((string)item.Titulo, "Details", "Crud", new {id = (int)item.Id})</li>
+    }
+</ul>

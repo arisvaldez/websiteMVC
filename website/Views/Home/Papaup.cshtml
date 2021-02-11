@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Papaupa";
+
+}
+
+<h2>Papaupa @ViewBag.Resultado</h2>
+<input type="text" value="@ViewBag.Nombre" />
+
+@{ for (int i = 0; i < 10; i++)
+    {
+        <lable> @i </lable>
+    }
+}

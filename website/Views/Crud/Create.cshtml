@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form action="/Crud/Create" method="post">
+    <label>Nombre</label>
+    <input name="nombre" type="text" />
+    <br />
+    <label>Telefono</label>
+    <input name="telefono" type="text" />
+    <br/>
+    <input type="submit" value="Enviar"/>
+    Jose@hotmail.com
+</form>
+
+@if(ViewBag.Datos != null)
+{
+<p>
+    @ViewBag.Datos["nombre"]
+    <br />
+    @ViewBag.Datos["telefono"]
+
+</p>
+}

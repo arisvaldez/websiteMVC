@@ -1,0 +1,16 @@
+﻿@model IEnumerable<website.Models.BookModel>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index Crud</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="/Book/Detalle/@item.Id">@item.Titulo</a></li>
+        <li>@Html.ActionLink((string)item.Titulo, "Details", "Book", new { id = (int)item.Id })</li>
+    }
+</ul>

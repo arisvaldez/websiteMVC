@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using website.Models;
 
 namespace website.Controllers
 {   
-    public class CrudController : Controller
+    public class BookController : Controller
     {
-        List<Libro> libros;
+        List<BookModel> libros;
 
-        public CrudController()
+        public BookController()
         {
-            libros = new List<Libro>()
+            libros = new List<BookModel>()
             {
-                new Libro()
+                new BookModel()
                 {
                     Id = 1,
                     Titulo = "La Gran Controversias",
                     FechaPublicacion = "1880"
                 },
 
-                new Libro()
+                new BookModel()
                 {
                     Id = 2,
                     Titulo = "La Gran Batalla",
                     FechaPublicacion = "1910"
                 },
                 
-                new Libro()
+                new BookModel()
                 {
                     Id = 3,
                     Titulo = "La Batalla Final",
@@ -40,8 +41,8 @@ namespace website.Controllers
         // GET: Crud
         public ActionResult Index()
         {
-            ViewBag.Datos = libros;
-            return View();
+            var model = new BookModel().GetAll();
+            return View(model);
         }
 
         // GET: Crud/Details/5
@@ -49,6 +50,12 @@ namespace website.Controllers
         {
             ViewBag.Datos = libros[id-1];
             return View();
+        }
+
+        public ActionResult Detalle(int id)
+        {
+            var model = libros[id - 1];
+            return View(model);
         }
 
         // GET: Crud/Create
@@ -59,12 +66,13 @@ namespace website.Controllers
 
         // POST: Crud/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BookModel model)
         {
+            //FormCollection collection
             try
             {
                 // TODO: Add insert logic here
-                ViewBag.Datos = collection;
+                ViewBag.Datos = model;
                 return View();
                // return RedirectToAction("Index");
             }
@@ -119,10 +127,5 @@ namespace website.Controllers
         }
     }
 
-    public class Libro
-    {
-        public int Id { get; set; }
-        public string Titulo { get; set; }
-        public string FechaPublicacion { get; set; }
-    }
+ 
 }

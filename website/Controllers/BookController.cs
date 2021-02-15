@@ -9,34 +9,6 @@ namespace website.Controllers
 {   
     public class BookController : Controller
     {
-        List<BookModel> libros;
-
-        public BookController()
-        {
-            libros = new List<BookModel>()
-            {
-                new BookModel()
-                {
-                    Id = 1,
-                    Titulo = "La Gran Controversias",
-                    FechaPublicacion = "1880"
-                },
-
-                new BookModel()
-                {
-                    Id = 2,
-                    Titulo = "La Gran Batalla",
-                    FechaPublicacion = "1910"
-                },
-                
-                new BookModel()
-                {
-                    Id = 3,
-                    Titulo = "La Batalla Final",
-                    FechaPublicacion = "1980"
-                }
-            };
-        }
 
         // GET: Crud
         public ActionResult Index()
@@ -48,13 +20,14 @@ namespace website.Controllers
         // GET: Crud/Details/5
         public ActionResult Details(int id)
         {
-            ViewBag.Datos = libros[id-1];
+            ViewBag.Datos = new BookModel().Get(id);
             return View();
         }
 
+        // GET: Crud/Detalle/5
         public ActionResult Detalle(int id)
         {
-            var model = libros[id - 1];
+            var model = new BookModel().Get(id);
             return View(model);
         }
 
@@ -72,12 +45,13 @@ namespace website.Controllers
             try
             {
                 // TODO: Add insert logic here
-                ViewBag.Datos = model;
-                return View();
-               // return RedirectToAction("Index");
+                new BookModel().Insert(model);
+
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
+                ViewBag.Erros = e.Message;
                 return View();
             }
         }
@@ -85,17 +59,19 @@ namespace website.Controllers
         // GET: Crud/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+           var model =  new BookModel().Get(id);
+            return View(model);
         }
 
         // POST: Crud/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, BookModel model)
         {
             try
             {
                 // TODO: Add update logic here
-
+                model.Id = id;
+                new BookModel().Edit(model);
                 return RedirectToAction("Index");
             }
             catch

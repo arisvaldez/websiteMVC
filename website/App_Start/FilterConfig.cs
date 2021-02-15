@@ -8,6 +8,7 @@ namespace website
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
     }
 }

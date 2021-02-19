@@ -1,0 +1,20 @@
+﻿@model website.Models.UserModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form action="/Login/Logear/" method="post">
+    <input name="User" type="text" />
+    <input name="Password" type="password" />
+    <input value="send" type="submit" />
+</form>
+
+@if (ViewBag.Errors != null)
+{
+    <div>
+        <span class="alert-danger">@ViewBag.Errors</span>
+    </div>
+}

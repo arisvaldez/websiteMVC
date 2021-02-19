@@ -11,7 +11,14 @@
     @foreach (var item in Model)
     {
         <li><a href="/Book/Detalle/@item.Id">@item.Titulo</a></li>
-        <!-- <li>@Html.ActionLink((string)item.Titulo, "Details", "Book", new { id = (int)item.Id })</li>-->
+        
+        <li>@Html.ActionLink(
+            linkText: (string)item.Titulo, 
+            actionName: "Detalle", 
+            controllerName: "Book", 
+            routeValues: new { id = item.Id.ToString()},
+            htmlAttributes: null
+            )</li>
     }
     
 </ul>

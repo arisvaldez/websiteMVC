@@ -13,7 +13,7 @@ namespace website.Controllers
         // GET: Crud
         public ActionResult Index()
         {
-            var model = new BookModel().GetAll();
+           var model = new BookModel().GetAll();
             return View(model);
         }
 

@@ -8,20 +8,24 @@ namespace website.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
+            
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page Hola Mundo Infotep.";
+            ViewBag.Message = $"Your application description page Hola {Session["user"]} .";
             ViewBag.Recordatorio = "Esto es para que no se te olvide";
             return View();
         }
 
         public ActionResult Contact()
         {
+           
+            
             ViewBag.Message = "Your contact page.";
 
             return View();
